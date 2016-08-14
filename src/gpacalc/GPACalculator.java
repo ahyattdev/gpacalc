@@ -45,6 +45,8 @@ public class GPACalculator {
 		JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener((e) -> frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)));
 		exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, InputEvent.CTRL_DOWN_MASK));
+		JMenuItem calculate = new JMenuItem("Calculate...");
+		fileMenu.add(calculate);
 		fileMenu.add(exit);
 		menuBar.add(fileMenu);
 		
@@ -64,6 +66,8 @@ public class GPACalculator {
 		
 		GradeTableModel model = new GradeTableModel();
 
+		calculate.addActionListener((a) -> showGPA(frame, model));
+		
 		JTable table = new JTable(model);
 		TableColumn classTypeColumn = table.getColumnModel().getColumn(0);
 		classTypeColumn.setCellEditor(new DefaultCellEditor(classBox));
@@ -85,7 +89,7 @@ public class GPACalculator {
 	}
 	
 	void removeSelectedRow(JTable table, GradeTableModel model) {
-		model.removeRow(table.getSelectedRow())
+		model.removeRow(table.getSelectedRow());
 		table.getSelectedRow();
 	}
 	void showGPA(JFrame frame, GradeTableModel model) {
